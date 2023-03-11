@@ -15,7 +15,7 @@ main()
      {
         fahr = (celsius * 1.8) + 32;
 
-        printf("%8.0f \t %9.1f\n", celsius , fahr);
+        printf("%8.0f \t %9.0f\n", celsius , fahr);
         celsius = celsius + step;
     }
 }
