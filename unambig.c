@@ -6,18 +6,15 @@ int main()
 
     while ((c = getchar()) != EOF) 
     {
-
-        if (c == '\b'){
+        if (c == '\b') {
             putchar('\\');
             putchar('b');
         }
-        if (c == '\t')
-        {
+        else if (c == '\t') {
             putchar('\\');
             putchar('t');
         }
-        if (c == '\\')
-        {
+        else if (c == '\\') {
             putchar('\\');
             putchar('\\');
         }
@@ -26,4 +23,4 @@ int main()
         }
     }
     return 0;
-}        
+} 
