@@ -17,8 +17,6 @@ int main()
         {
             
             ++ndigit[c -'0']; /*increase number of occurences of the index, and -0 is sort of a conversion*/
-            printf(" c is %d\n", c);
-            printf(" c - 1 = %d \n", c-'1');
 
         }
         else if (c == ' ' || c == '\n' || c == '\t')
