@@ -21,6 +21,6 @@ char s[MAXLINE];
         }
     }
     s[i] = '\0';  
-    printf("%s\n", s)
+    printf("%s\n", s);
 
 }
