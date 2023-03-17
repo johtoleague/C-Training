@@ -8,7 +8,7 @@ int main()
 {
 	int len;
 	int max;
-	char line{MAXLINE];
+	char line [MAXLINE];
 	char out[MAXLINE];
 	
 	while((len = getlines(line, MAXLINE)) > 0)
