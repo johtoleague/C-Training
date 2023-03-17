@@ -3,63 +3,61 @@
 #define MAXLINE 1024
 
 int getlines(char line[], int maxline);
-void htoi(int to[], char from[], int len);
-
-int i, c;
-char s[1024];
-char d[1024];
+int htoi(char from[], int len);
 
 int main()
 {
-	int len;
-	int max;
-	char line[MAXLINE];
-	char out[MAXLINE];
-	
-	while((len = getlines(line, MAXLINE)) > 0)
-		{
-			htoi(out, line, len);
-			printf("%s", out);
-		}
-	return 0;
+    int len;
+    int out;
+    char line[MAXLINE];
+
+    while ((len = getlines(line, MAXLINE)) > 0)
+    {
+        out = htoi(line, len);
+        printf("%d\n", out); // Changed to %d and added newline
+    }
+    return 0;
 }
-
-
 
 int getlines(char s[], int lim)
 {
-	int c,i;
-	
-	for(i=0; i<lim-1 &&(c=getchar())!=EOF && c!='\n'; ++i)
-		s[i] = c;
-	if (c == '\n')
-	{
-		s[i] = '\0';
-		return i;
-	}
+    int c, i;
+
+    for (i = 0; i < lim - 1 && (c = getchar()) != EOF && c != '\n'; ++i)
+        s[i] = c;
+    s[i] = '\0'; // Moved this line outside of the if statement
+    if (c == '\n')
+    {
+        return i;
+    }
+    return i; // Added return statement for the case when the loop ends without reaching a newline
 }
 
-void htoi(int* dec, char from[], int len)
+int htoi(char from[], int len)
 {
     int i;
     int value = 0;
 
     for (i = len - 1; i >= 0 && from[i] != '\0'; --i)
     {
-        if (from[i] >= '0' && from[i] <= '9') {
+        if (from[i] >= '0' && from[i] <= '9')
+        {
             value += (from[i] - '0') * pow(16, len - i - 1);
         }
-        else if (from[i] >= 'a' && from[i] <= 'f') {
+        else if (from[i] >= 'a' && from[i] <= 'f')
+        {
             value += (from[i] - 'a' + 10) * pow(16, len - i - 1);
         }
-        else if (from[i] >= 'A' && from[i] <= 'F') {
+        else if (from[i] >= 'A' && from[i] <= 'F')
+        {
             value += (from[i] - 'A' + 10) * pow(16, len - i - 1);
         }
-        else {
+        else
+        {
             value = 0;
             break;
         }
     }
 
-    *dec = value;
+   return value;
 }
