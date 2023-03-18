@@ -38,8 +38,8 @@ void htoi(int dec, char from[], int len)
     int i;
     int value = 0;
 
-    for (i = len - 1; i >= 0 && from[i] != '\0'; --i)
-    {
+    for (i = len - 1; i >= 0 && from[i] != '\0'; --i)   
+    {`
         if (from[i] >= '0' && from[i] <= '9')
         {
             value += (from[i] - '0') * pow(16, len - i - 1);
