@@ -44,7 +44,7 @@ void reverse(char str[]) {
  int i, j;
  char temp;
  i = 0;
- while (str[i] != '')
+ while (str[i] !=' ')
   ++i;
  --i;
  if (str[i] != 'n')
