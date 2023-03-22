@@ -3,6 +3,7 @@
 
 int getlines(char line[], int max);
 int strindex(char source[], char searchfor[]);
+int strinrdex(char test[], char p[], int len);
 
 char pattern[] = "ould";
 
@@ -10,12 +11,14 @@ main()
 {
     char line[MAXLINE];
     int found = 0;
+    int len, h;
 
-    while ((getlines(line, MAXLINE)) > 0)
+
+    while ((len =getlines(line, MAXLINE)) > 0)
     {
-        if (strindex(line, pattern) >= 0)
+        if ((h = strinrdex(line, pattern, len)) >= 0)
         {
-            printf("%s\n", line);
+            printf("%d in main \n",h);
             found++;
         }
     
@@ -47,6 +50,35 @@ int strindex(char s[], char t[])
         if (k > 0 && t[k] =='\0')
             return i;
 
+    }
+    return -1;
+}
+
+int strinrdex(char s[], char p[], int len)
+{
+    int i, j, k, l;
+
+    for (l = 0; p[l] != '\0'; l++)
+        ;
+
+    for (i = len - 1; i >= 0 && i != '\0'; i--)
+    {
+        for (j = i, k = l - 1; j >= 0 && s[j] == p[k] && p[k] != '\0'; j--, k--){
+            //printf("%c %d\n", p[k], k );
+            if (k == 0 && s[j] == p[0])
+        {
+            printf("%c %d\n", s[j], k );
+            return (i - l + 1);
+        }
+        }
+        
+        /*//printf("%d\n", i);
+        if (k == 0 && s[j] == p[0])
+        {
+            printf("%c %d\n", s[j], k );
+            return (i - l + 1);
+        }
+        */
     }
     return -1;
 }
