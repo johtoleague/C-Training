@@ -10,7 +10,7 @@
 int getop(char []);
 void push(double);
 double pop(void);
-int sp =0;
+int sp = 0;
 double val[MAXVAL];
 void ungetch(int c);
 
