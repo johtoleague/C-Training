@@ -5,7 +5,7 @@ void qsort(int v[], int left, int right)
     int i, last;
     void swap(int v[], int left, int right);
 
-    if (left >= right) /*do ntohing if array contains*/
+    if (left >= right) /*do nothing if array contains*/
         return;
     swap(v, left, (left + right)/2); /* move patition elem*/
     last = left;
