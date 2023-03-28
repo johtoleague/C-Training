@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <ctype.h>
+#include <stdlib.h>clear
 #define MAXLINE 100
 
 int getline(char line[], int max);
