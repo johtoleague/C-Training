@@ -21,5 +21,10 @@ int getint(int *pn)
     sign = (c == '-') ? -1 : 1;
     if (c =='+' || c == '-')
         c == getch(); //get next character
-    for (*pn )
+    for (*pn = 0; isdigit(c); c = getch())
+        *pn = 10 * *pn + (c - '0');
+    *pn *= sign;
+    if (c != EOF)
+        ungetch(c);
+    return c;
 }
