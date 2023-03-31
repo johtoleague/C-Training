@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <string.h>
 #define BUFSIZE 100
-
+/*need to fix this*/
 char buf[BUFSIZE];
 int bufp = 0;
 int getfloat(float *pn);
