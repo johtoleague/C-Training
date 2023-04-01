@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <string.h>
 #define BUFSIZE 100
-/*need to fix this*/
+/*need to fix this, maybe not*/
 char buf[BUFSIZE];
 int bufp = 0;
 int getfloat(float *pn);
@@ -22,6 +22,7 @@ int main()
 int getfloat(float *pn)
 {
     int c, sign;
+    float power;
 
     while (isspace(c = getch())) //skip spaces
         ;
@@ -31,15 +32,16 @@ int getfloat(float *pn)
         return 0;
     }
     sign = (c == '-') ? -1 : 1;
-    if (c =='+' || c == '-')
-        c = getch();//get next character if + or - encountered
-        if (!isdigit(c)){
-            ungetch(c); //not a number go back
-            return 0;
-        } 
-    for (*pn = 0; isdigit(c); c = getch()) //get next character as long as it's a digit 0-9, read from left to right until it's no longer a digit
-        *pn = 10 * *pn + (c - '0');
-    *pn *= sign;
+    if (c == '+' || c == '-')
+        c = getch();
+    for (*pn = 0.0; isdigit(c); c = getch())
+        *pn = 10.0 * *pn + (c - '0');
+    if (c == '.')
+        c = getch();
+    for (power = 1.0; isdigit(c); c = getch()) {
+        *pn = 10.0 * *pn + (c - '0');
+        power *= 10.0;
+    }
     if (c != EOF)
         ungetch(c);
     return c;
