@@ -52,9 +52,12 @@ int readlines(char *lineptr[], int maxlines)
 /*writelines; white ouput lines*/
 void writelines(char *lineptr[], int nlines)
 {
-    int i;
+    /*int i;
     for (i = 0; i< nlines; i++)
-        printf("%s\n", lineptr[i]);
+        printf("%s\n", lineptr[i]);*/
+    while (nlines -- > 0)
+        print("%s\n", *lineptr++);
+    
 }
 
 int getline(char s[], int lim)
