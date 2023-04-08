@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 /* echo command -line aruguemtnsl 1st ver*/
-main(int argc, char *argv);
+main(int argc, char *argv)
 {
     int i;
 
