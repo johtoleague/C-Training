@@ -11,8 +11,9 @@ int main(int argc, char *argv[]) {
     long lineno = 0;
     int c, except = 0, number = 0, found = 0;
 
-    while (--argc > 0 && (*++argv)[0] == '-') {
-        while ((c = *++argv[0])) {
+    while (--argc > 0 && (*++argv)[0] == '-') { /*this portion check  for  argc 
+    and argv to look for options and if ther are more it will process it*/
+        while ((c = (*++argv)[0])) { /*this portion will be the second character*/
             switch(c) {
             case 'x':
                 except = 1;
