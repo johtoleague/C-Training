@@ -3,6 +3,7 @@
 
 #define MAXLINE 1024
 int getline(char s[], int lim);
+void free_lines(char **lines, int lineno);
 
 /*  build tail, supposed to print that last 10 line by default
 unless -n is specified, then we'll need to read in the number,
@@ -29,8 +30,30 @@ int main(int argc, char *argv[]) {
         printf("usage: find -x -n pattern\n"); 
         return 0;
     }
-    while (getline(line, MAXLINE) > 0) {
-        char *liner[MAXLINE];
+    char **lines = malloc(lineno * sizeof(char *));
+    if (!lines) {
+        perror("malloc");
+        return 1;
+    }
+
+    int nread = 0;
+    int current = 0;
+    while (get_line(&lines[current]) != EOF) {
+        current = (current + 1) % lineno;
+        nread++;
+        if (nread > lineno) {
+            free(lines[current]);
+        }
+    }
+
+    int start_line = nread <= lineno ? 0 : current;
+    for (int i = start_line; i < start_line + lineno && i < nread; i++) {
+        printf("%s\n", lines[i % lineno]);
+    }
+
+    free_lines(lines, lineno);
+
+    return 0;
 
 
 
@@ -48,3 +71,11 @@ int getline(char s[], int lim)
 		return i;
 	}
 }
+
+void free_lines(char **lines, int lineno) {
+    for (int i = 0; i < lineno; i++) {
+        free(lines[i]);
+    }
+    free(lines);
+}
+
