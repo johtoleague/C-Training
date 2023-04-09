@@ -30,7 +30,9 @@ int main(int argc, char *argv[]) {
         }
     }
     if (argc != 1) {
-        printf("usage: find -x -n pattern\n");
+        printf("usage: find -x -n pattern\n"); /* we only get here
+        after the argumetns with - and a letter are worked through
+        and at this point we should only have one string or argument passed*/
         return 1;
     }
     while (getline(line, MAXLINE) > 0) {
