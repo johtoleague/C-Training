@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/itsjo/Documents/GitHub/C Training",
-      "program": "c:/Users/itsjo/Documents/GitHub/C Training/build/Debug/outDebug",
+      "cwd": "c:/Users/itsjo/git/C-Training",
+      "program": "c:/Users/itsjo/git/C-Training/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
