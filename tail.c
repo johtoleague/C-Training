@@ -1,21 +1,18 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #define MAXLINE 1024
-int getline(char s[], int lim);
+
+int get_line(char **s);
 void free_lines(char **lines, int lineno);
 
-/*  build tail, supposed to print that last 10 line by default
-unless -n is specified, then we'll need to read in the number,
-and print out those many lines*/
 int main(int argc, char *argv[]) {
-    char line[MAXLINE];
     int lineno = 10;
     int c;
 
     while (--argc > 0 && (*++argv)[0] == '-') {
         while ((c = (*++argv)[0])) {
-             /*this portion will be the second character*/
             switch(c) {
             case 'n':
                 lineno = atoi(*++argv);
@@ -23,13 +20,15 @@ int main(int argc, char *argv[]) {
             default:
                 printf(" using default 10");
                 break;
-                }
+            }
         }
     }
+
     if (argc != 0) {
-        printf("usage: find -x -n pattern\n"); 
+        printf("usage: tail [-n number]\n");
         return 0;
     }
+
     char **lines = malloc(lineno * sizeof(char *));
     if (!lines) {
         perror("malloc");
@@ -54,28 +53,45 @@ int main(int argc, char *argv[]) {
     free_lines(lines, lineno);
 
     return 0;
-
-
-
 }
 
-int getline(char s[], int lim)
-{
-	int c,i;
-	
-	for(i=0; i<lim-1 &&(c=getchar())!=EOF && c!='\n'; ++i)
-		s[i] = c;
-	if (c == '\n')
-	{
-		s[i] = '\0';
-		return i;
-	}
+int get_line(char **s) {
+    int c, i = 0, size = MAXLINE;
+    char *buf = malloc(size);
+
+    if (!buf) {
+        perror("malloc");
+        return EOF;
+    }
+
+    while ((c = getchar()) != EOF && c != '\n') {
+        buf[i++] = c;
+        if (i == size) {
+            size *= 2;
+            buf = realloc(buf, size);
+            if (!buf) {
+                perror("realloc");
+                return EOF;
+            }
+        }
+    }
+
+    if (c == EOF && i == 0) {
+        free(buf);
+        return EOF;
+    }
+
+    buf[i] = '\0';
+    *s = buf;
+
+    return i;
 }
 
 void free_lines(char **lines, int lineno) {
     for (int i = 0; i < lineno; i++) {
-        free(lines[i]);
+        if (lines[i]) {
+            free(lines[i]);
+        }
     }
     free(lines);
 }
-
