@@ -44,6 +44,28 @@ int (*select_operation())(int, int)
 
 
 }
+bool freeze_c(int temp)
+{
+    if (temp <= 0) return true;
+    else return false;
+}
+
+bool freeze_f(int temp)
+{
+    if (temp <= 32) return true;
+    else return false;
+}
+void is_freezing( bool (*freeze_check)(int))/*considred by a call back fnc*/
+{
+    int temp = 0;
+    printf("Enter Temperature: ");
+    scanf("%d", &temp);
+    
+    if(freeze_check(temp)){
+            printf("It's freezing!\n");
+    } else
+        printf("It's not a freeze!\n");
+}
 
 int main()
 {
@@ -75,6 +97,11 @@ int main()
     this is just another way we return a pointer to a function*/
     printf("answer %d\n", operation(20,5));
 
+    printf("\nCelcius...\n");
+    printf("\n then Fahrenheit...\n");
+    is_freezing(freeze_c);
+    is_freezing(freeze_f);
 
     return 0;
+
 }
