@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdbool.h>
 
 void function(int x)
 {
@@ -8,6 +9,40 @@ void function(int x)
 double add(double x, double y)
 {
     return x + y;
+}
+
+int subtract(int x, int y)
+{
+    return x - y;
+}
+
+int multiply(int x, int y)
+{
+    return x * y;
+}
+
+int divide(int x, int y)
+{
+    return x / y;
+}
+
+int (*select_operation())(int, int)
+{
+    int option = 0;
+    printf("Select An Operation\n");
+    printf("1) Subtract\n");
+    printf("2) Multiply\n");
+    printf("3) Divide\n");
+    printf("Enter: ");
+    scanf("%d", &option);
+
+    if (option ==1) return subtract;
+    else if (option ==2) return multiply;
+    else if (option ==3) return divide;
+    else return NULL;
+
+
+
 }
 
 int main()
@@ -24,7 +59,22 @@ int main()
     the pointer, with output of double and both arguments expectaion
     of double*/
     add_pointer = add;
-    printf("%f",((add_pointer)(8.0, 8.0))); 
+    printf("%f\n",((add_pointer)(8.0, 8.0))); 
+
+
+    int (*array_pointer[])(int, int) = {subtract, multiply, divide};
+
+    int product = (*array_pointer[1])(16,15);
+
+    printf("product: %d\n", product);
+
+    int (*operation)(int, int) = select_operation(); /*this declares
+    the operation pointer to the select operator function that 
+    connects us to multiple arrays, but it's true that it will return a 
+    integer and all the functions all take in int for both arguments
+    this is just another way we return a pointer to a function*/
+    printf("answer %d\n", operation(20,5));
+
 
     return 0;
 }
