@@ -7,8 +7,7 @@ char *lineptr[MAXLINES]; /*pointers to text lines*/
 int readlines(char *lineptr[], int nlines);
 void writlines(char *lineptr[], int nlines);
 
-void qsort(void *lineptr, int left, int right,
-            int (*comp) (void *, void *)); 
+void qsort(void *v[], int left, int right, int (*comp) (void *, void *)); 
 int numcmp(char *, char *);
 
 /* sort input lines*/
