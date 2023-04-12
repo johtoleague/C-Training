@@ -1,4 +1,4 @@
-#include <stdio.h>
+dc#include <stdio.h>
 #include <math.h>
 #define MAXLINE 1024
 
