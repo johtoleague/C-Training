@@ -11,20 +11,22 @@ struct bookInfo {
 main()
 {
     int ctr;
-    struct bookInfo books[3];
+    struct bookInfo * books[3];
 
     //get the info about each book from the user
 
     for (ctr = 0; ctr < 3; ctr++)
-    {
+    {   
+        books[ctr] = (struct bookInfo*)malloc(sizeof(struct bookInfo));
+
         printf("What is the name of the book #%d?\n", (ctr+1));
-        gets(books[ctr].title);
+        gets(books[ctr]->title);
         puts("Who is the author? ");
-        gets(books[ctr].author);
+        gets(books[ctr]->author);
         puts("How much did the book cost? ");
-        scanf("%f", &books[ctr].price);
+        scanf("%f", &books[ctr]->price);
         puts ("How many pages in the book? ");
-        scanf(" %d", &books[ctr].pages);
+        scanf(" %d", &books[ctr]->pages);
         getchar();//clears last newline for next loop
     }
 
