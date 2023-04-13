@@ -33,9 +33,9 @@ main()
     printf("\n\nHere is the collection of books:\n");
     for (ctr = 0; ctr < 3; ctr++)
     {
-        printf("#%d: %s by %s", ctr+1, books[ctr].title, books[ctr].author);
+        printf("#%d: %s by %s", ctr+1, books[ctr]->title, books[ctr]->author);
 
-        printf("\nIt is %d pages and costs $%.2f", books[ctr].pages, books[ctr].price);
+        printf("\nIt is %d pages and costs $%.2f", books[ctr]->pages, books[ctr]->price);
 
         printf("\n\n");
 
